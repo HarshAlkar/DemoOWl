@@ -1,8 +1,13 @@
+import { useRef } from 'react'
+import { useScrollDepth } from '../hooks/useScrollDepth'
 import { ImageWithFallback } from './ImageWithFallback'
 
 export function CTASection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  useScrollDepth(sectionRef, 14)
+
   return (
-    <section className="cta" aria-labelledby="cta-title">
+    <section ref={sectionRef} className="cta" aria-labelledby="cta-title">
       <div className="cta__media">
         <ImageWithFallback
           src="/images/floral-printed-dress.png"

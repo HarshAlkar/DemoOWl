@@ -16,6 +16,7 @@ import { ProductModal } from './components/ProductModal'
 import { ReviewSection } from './components/ReviewSection'
 import { SearchOverlay } from './components/SearchOverlay'
 import { StoreSection } from './components/StoreSection'
+import { CursorGlow } from './components/CursorGlow'
 import { WhatsAppButton } from './components/WhatsAppButton'
 import { WishlistDrawer } from './components/WishlistDrawer'
 
@@ -46,6 +47,7 @@ function App() {
       </main>
       <Footer />
       <WhatsAppButton />
+      <CursorGlow />
     </BoutiqueProvider>
   )
 }

@@ -58,7 +58,9 @@ export function Footer() {
           <p>© 2026 Sassy Owl. All rights reserved.</p>
           <p className="tivra">
             <img src={agency.logo} alt="" width={28} height={28} />
-            {agency.credit}
+            <span>
+              Designed & Developed by <em className="tivra__name">TIVRA</em>
+            </span>
           </p>
         </div>
       </div>

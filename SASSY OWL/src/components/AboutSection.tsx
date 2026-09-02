@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+import { useScrollDepth } from '../hooks/useScrollDepth'
 import { ImageWithFallback } from './ImageWithFallback'
 import { SectionHeading } from './SectionHeading'
 
@@ -10,10 +12,13 @@ const highlights = [
 ]
 
 export function AboutSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  useScrollDepth(sectionRef, 12)
+
   return (
-    <section className="about" id="about">
+    <section ref={sectionRef} className="about" id="about">
       <div className="wrap about__grid">
-        <div>
+        <div className="about__stage">
           <div className="about__photo">
             <ImageWithFallback
               src="/images/boutique-interior.png"
@@ -22,6 +27,7 @@ export function AboutSection() {
               height={1100}
             />
           </div>
+          <div className="about__accent" aria-hidden="true" />
           <div className="about__photo about__photo--offset">
             <ImageWithFallback
               src="/images/magenta-kurta-set.png"
@@ -31,7 +37,7 @@ export function AboutSection() {
             />
           </div>
         </div>
-        <div>
+        <div className="about__copy">
           <SectionHeading
             eyebrow="The boutique"
             title="More than fashion. It's your expression."

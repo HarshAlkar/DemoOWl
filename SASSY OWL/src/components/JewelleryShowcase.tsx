@@ -1,11 +1,18 @@
+import { useRef } from 'react'
+import { use3DTilt } from '../hooks/use3DTilt'
+import { useScrollDepth } from '../hooks/useScrollDepth'
 import { ImageWithFallback } from './ImageWithFallback'
 import { SectionHeading } from './SectionHeading'
 
 export function JewelleryShowcase() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const stageRef = use3DTilt<HTMLDivElement>({ maxX: 3, maxY: 4 })
+  useScrollDepth(sectionRef, 14)
+
   return (
-    <section className="jewellery" id="jewellery">
+    <section ref={sectionRef} className="jewellery" id="jewellery">
       <div className="wrap jewellery__grid">
-        <div className="jewel__stage">
+        <div ref={stageRef} className="jewel__stage tilt-card">
           <div className="jewel__photo">
             <ImageWithFallback
               src="/images/statement-necklace.png"
@@ -23,7 +30,7 @@ export function JewelleryShowcase() {
             />
           </div>
         </div>
-        <div>
+        <div className="jewellery__copy-wrap">
           <SectionHeading
             tone="dark"
             eyebrow="The jewellery edit"

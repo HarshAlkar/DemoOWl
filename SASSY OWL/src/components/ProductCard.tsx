@@ -1,15 +1,17 @@
 import type { Product } from '../data/products'
 import { productWhatsappMessage, whatsappUrl } from '../data/store'
 import { useBoutique } from '../context/BoutiqueContext'
+import { use3DTilt } from '../hooks/use3DTilt'
 import { HeartIcon } from './Icons'
 import { ImageWithFallback } from './ImageWithFallback'
 
 export function ProductCard({ product }: { product: Product }) {
   const { openProduct, toggleWishlist, isWishlisted } = useBoutique()
+  const tiltRef = use3DTilt<HTMLElement>({ maxX: 3.5, maxY: 4.5 })
   const saved = isWishlisted(product.id)
 
   return (
-    <article className="product-card">
+    <article ref={tiltRef} className="product-card tilt-card">
       <div className="product-card__media">
         <ImageWithFallback
           src={product.image}
@@ -46,6 +48,7 @@ export function ProductCard({ product }: { product: Product }) {
           </a>
         </div>
       </div>
+      <span className="tilt-glare" aria-hidden="true" />
     </article>
   )
 }
